@@ -3,7 +3,7 @@
 #include <random>
 #include <NTL/ZZ.h>
 using namespace std;
-NTL::ZZ criba(NTL::ZZ n)
+int criba(int n)
 {
     bool* primos = new bool[n];
     for (int i = 0; i < n; i++)

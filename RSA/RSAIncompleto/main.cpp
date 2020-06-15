@@ -19,8 +19,8 @@ int main()
     //a = pow(42, 124658);
     cout << n3 % 208777609;*/
     RSA rsa;
-    string msj = "C";
-    string cmsj = rsa.cypher(msj);
+    string msj = "M";
+    NTL::ZZ cmsj = rsa.cypher(msj);
     cout << cmsj << endl;
 }
 

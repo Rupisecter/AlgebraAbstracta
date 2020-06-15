@@ -12,35 +12,36 @@ class RSA
 		NTL::ZZ p, q, n, e, d, phin;
 		RSA();
 		NTL::ZZ generarprivada();
-		string cypher(string msj);
+		NTL::ZZ cypher(string msj);
 		
 
 };
 RSA::RSA()
 {
 	alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz";
-	p = criba(100);
-	q = criba(100);
-	n = p * q;
-	phin = (p - 1) * (q - 1);
-	e = criba(phin);
+	p = 15913;
+	q = 89019;
+	n = 1416559347;
+	phin = 1416454416;
+	e = 263209;
 
 }
 NTL::ZZ RSA::generarprivada()
 {
 	NTL::ZZ d = inversa(e, phin);
-	return NTL::conv < NTL::ZZ >("0");
+	return NTL::ZZ(0);
 }
 
-string RSA::cypher(string msj)
+NTL::ZZ RSA::cypher(string msj)
 {
 	string temp,dmsj;
 	int aux;
+	NTL::ZZ aux2;
 	for (int i = 0; i < msj.length(); i++)
 	{
 		aux = alfabeto.find(msj[i]);
-		temp = to_string(mod(pow(aux, e), n));
-		dmsj.append(temp);
+		NTL::ZZ(aux);
+		aux2 = NTL::PowerMod(aux, e, n);
 	}
-	return dmsj;
+	return aux2;
 }
