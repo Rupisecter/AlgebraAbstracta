@@ -7,22 +7,24 @@ using namespace std;
 using namespace NTL;
 vector<long long int> criba(long long int n)
 {
-    vector<bool> testprimos(n,false);
-    vector<long long int> primos;
+    bool* primos = new bool[n];
+    vector<long long int> listadeprimos;
+    for (long long int i = 0; i < n; i++)
+        primos[i] = false;
     for (long long int j = 2; j * j <= n; j++)
     {
-        if (!(testprimos[j]))
+        if (!(primos[j]))
         {
             for (long long int k = j * j; k <= n; k += j)
-                testprimos[k] = true;
+                primos[k] = true;
         }
     }
     for (long long int l = 2; l <= n; l++)
     {
-        if (!(testprimos[l]))
-            primos.push_back(l);
+        if (!(primos[l]))
+            listadeprimos.push_back(l);
     }
-    return primos;
+    return listadeprimos;
 }
 long long int mod(long long int x, long long int y)
 {

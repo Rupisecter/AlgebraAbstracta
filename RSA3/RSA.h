@@ -25,6 +25,8 @@ RSA::RSA(int bits)
 	q = primos[rand() % primos.size()];
 	n = p*q;
 	phin = (p-1)*(q-1);
+	cout << p << " " << q << " " << n << " " << phin << " ";
+	generaraleatorio();
 }
 vector<long long int> RSA::generaraleatorio()
 {
@@ -32,6 +34,7 @@ vector<long long int> RSA::generaraleatorio()
 	vector<long long int> posiblesE = criba(phin);
 	e = posiblesE[rand() % posiblesE.size()];
 	d = inversa(e, phin);
+	cout << d << endl;
 	claveprivada.push_back(n);
 	claveprivada.push_back(d);
 	return claveprivada;
@@ -39,9 +42,11 @@ vector<long long int> RSA::generaraleatorio()
  long long int RSA::cypher(string msj)
 {
 	long long int res;
+	int indice;
 	for (int i = 0; i < msj.length(); i++)
 	{
-		res = expmod(msj[i],e,n);
+		indice = alfabeto.find(msj[i]);
+		res = expmod(indice,e,n);
 	}
 	return res;
 }
